@@ -13,10 +13,9 @@ public class Aluno {
 		
 	}
 
-	public Aluno(String nome, Date dataDeNascimento, char sexo, String nacionalidade) {
+	public Aluno(String nome, Date dataDeNascimento, String nacionalidade) {
 		this.nome = nome;
 		this.dataDeNascimento = dataDeNascimento;
-		this.sexo = sexo;
 		this.nacionalidade = nacionalidade;
 	}
 
@@ -34,14 +33,6 @@ public class Aluno {
 
 	public void setDataDeNascimento(Date dataDeNascimento) {
 		this.dataDeNascimento = dataDeNascimento;
-	}
-
-	public char getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(char sexo) {
-		this.sexo = sexo;
 	}
 
 	public String getNacionalidade() {
@@ -79,7 +70,7 @@ public class Aluno {
 
 	@Override
 	public String toString() {
-		return "Alunos [nome=" + nome + ", dataDeNascimento=" + dataDeNascimento + ", sexo=" + sexo + ", nacionalidade="
+		return "Alunos [nome=" + nome + ", dataDeNascimento=" + dataDeNascimento + ", nacionalidade="
 				+ nacionalidade + "]";
 	}
 	

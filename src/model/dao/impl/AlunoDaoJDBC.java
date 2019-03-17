@@ -1,11 +1,24 @@
 package model.dao.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
+import db.DB;
+import db.DbException;
 import model.dao.AlunoDao;
 import model.entities.Aluno;
 
 public class AlunoDaoJDBC implements AlunoDao {
+
+	private Connection conn;
+	
+	public AlunoDaoJDBC(Connection conn) {
+		super();
+		this.conn = conn;
+	}
 
 	@Override
 	public void insert(Aluno obj) {
@@ -27,8 +40,29 @@ public class AlunoDaoJDBC implements AlunoDao {
 
 	@Override
 	public Aluno findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = conn.prepareStatement("select * from alunos "
+					+ " where id = ?");
+			st.setInt(1, id);
+			rs = st.executeQuery();
+			if(rs.next()) {
+				Aluno obj = new Aluno();
+				obj.setNome(rs.getString("nome"));
+				obj.setDataDeNascimento(rs.getDate("nascimento"));
+				obj.setNacionalidade(rs.getString("nacionalidade"));
+				return obj;
+			}
+			return null;
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
 	}
 
 	@Override
