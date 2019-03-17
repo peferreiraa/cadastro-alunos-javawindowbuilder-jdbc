@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,28 @@ public class AlunoDaoJDBC implements AlunoDao {
 
 	@Override
 	public void insert(Aluno obj) {
-		// TODO Auto-generated method stub
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement(
+					"insert into alunos "
+					+ "(nome, nascimento, nacionalidade) values (?, ?, ?)");
+			st.setString(1, obj.getNome());
+			st.setDate(2, new java.sql.Date(obj.getDataDeNascimento().getTime()));
+			st.setString(3, obj.getNacionalidade());
+			
+			int rowsAffected = st.executeUpdate();
+			if(rowsAffected > 0) {
+				System.out.println("Rows affected: " + rowsAffected);
+			}else {
+				throw new DbException("No rows affected");
+			}
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+		}
 		
 	}
 
