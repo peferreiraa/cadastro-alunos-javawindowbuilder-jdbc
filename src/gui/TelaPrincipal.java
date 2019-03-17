@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 
 import java.awt.Insets;
 import javax.swing.JPasswordField;
+import java.awt.Dimension;
 
 public class TelaPrincipal extends JFrame {
 
@@ -46,9 +47,14 @@ public class TelaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaPrincipal() {
+		setResizable(false);
+		setMinimumSize(new Dimension(1029, 600));
+		setMaximumSize(new Dimension(1029, 600));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 981, 603);
 		contentPanePrincipal = new JPanel();
+		contentPanePrincipal.setMinimumSize(new Dimension(1029, 600));
+		contentPanePrincipal.setMaximumSize(new Dimension(1029, 600));
 		contentPanePrincipal.setBackground(new Color(28,28,28));
 		contentPanePrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPanePrincipal);

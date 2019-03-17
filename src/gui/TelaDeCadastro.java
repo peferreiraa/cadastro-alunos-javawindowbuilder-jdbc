@@ -15,6 +15,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.JButton;
 import java.awt.Insets;
 import javax.swing.ImageIcon;
+import java.awt.Dimension;
 
 public class TelaDeCadastro extends JFrame {
 
@@ -53,8 +54,11 @@ public class TelaDeCadastro extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaDeCadastro() {
+		setResizable(false);
+		setMinimumSize(new Dimension(1029, 600));
+		setMaximumSize(new Dimension(1029, 600));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1041, 608);
+		setBounds(100, 100, 1029, 600);
 		contentPaneCadastro = new JPanel();
 		contentPaneCadastro.setBackground(new Color(28,28,28));
 		contentPaneCadastro.setBorder(new EmptyBorder(0, 3, 0, 0));
