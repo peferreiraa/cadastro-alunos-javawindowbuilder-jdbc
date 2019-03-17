@@ -1,6 +1,7 @@
 package application;
 
 import java.sql.Connection;
+import java.util.List;
 
 import db.DB;
 import model.dao.AlunoDao;
@@ -16,7 +17,12 @@ public class Program {
 		
 		Aluno aluno = alunoDao.findById(1);
 
-		System.out.println(aluno);
+		List<Aluno> list = alunoDao.findAll();
+		for(Aluno obj : list) {
+			System.out.println(obj);
+		}
+		
+		DB.closeConnection();
 	}
 
 }

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import db.DB;
@@ -67,8 +68,31 @@ public class AlunoDaoJDBC implements AlunoDao {
 
 	@Override
 	public List<Aluno> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = conn.prepareStatement("Select * from "
+					+ "alunos order by nome");
+			
+			rs = st.executeQuery();
+			
+			List<Aluno> list = new ArrayList<>();
+			while(rs.next()) {
+				Aluno obj = new Aluno();
+				obj.setNome(rs.getString("nome"));
+				obj.setDataDeNascimento(rs.getDate("nascimento"));
+				obj.setNacionalidade(rs.getString("nacionalidade"));
+				list.add(obj);
+			}
+			return list;
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
 	}
 
 }
