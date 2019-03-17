@@ -4,19 +4,31 @@ import java.util.Date;
 
 public class Aluno {
 	
+	private Integer id;
 	private String nome;
 	private Date dataDeNascimento;
-	private char sexo;
 	private String nacionalidade;
+	
 	
 	public Aluno() {
 		
 	}
 
-	public Aluno(String nome, Date dataDeNascimento, String nacionalidade) {
+	public Aluno(Integer id, String nome, Date dataDeNascimento, String nacionalidade) {
 		this.nome = nome;
 		this.dataDeNascimento = dataDeNascimento;
 		this.nacionalidade = nacionalidade;
+		this.id = id;
+	}
+
+	
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -68,10 +80,11 @@ public class Aluno {
 		return true;
 	}
 
+	
+	
 	@Override
 	public String toString() {
-		return "Alunos [nome=" + nome + ", dataDeNascimento=" + dataDeNascimento + ", nacionalidade="
-				+ nacionalidade + "]";
+		return "Aluno: " + id + ", " + nome + ", " + dataDeNascimento + ", " + nacionalidade;
 	}
 	
 	

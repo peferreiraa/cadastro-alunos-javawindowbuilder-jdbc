@@ -23,8 +23,8 @@ public class TelaDeCadastro extends JFrame {
 	private JPanel contentPaneCadastro;
 	private JTextField textNome;
 	private JLabel lblNascimento;
-	private JLabel labelSexo;
-	private JFormattedTextField txtSexo;
+	private JLabel lblId;
+	private JFormattedTextField txtId;
 	private JLabel labelNacionalidade;
 	private JFormattedTextField txtNacionalidade;
 	private JPanel pnlCadastro;
@@ -70,7 +70,7 @@ public class TelaDeCadastro extends JFrame {
 		pnlCadastro.setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome");
-		lblNome.setBounds(82, 124, 67, 20);
+		lblNome.setBounds(82, 177, 67, 20);
 		pnlCadastro.add(lblNome);
 		lblNome.setForeground(new Color(255, 255, 255));
 		lblNome.setFont(new Font("Consolas", Font.BOLD, 20));
@@ -81,12 +81,12 @@ public class TelaDeCadastro extends JFrame {
 		textNome.setFont(new Font("Consolas", Font.BOLD, 21));
 		textNome.setBackground(new Color(28,28,28));
 		textNome.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(102, 51, 255)));
-		textNome.setBounds(134, 124, 300, 20);
+		textNome.setBounds(142, 177, 292, 20);
 		pnlCadastro.add(textNome);
 		textNome.setColumns(10);
 		
 		lblNascimento = new JLabel("Data de nascimento");
-		lblNascimento.setBounds(82, 180, 217, 20);
+		lblNascimento.setBounds(82, 233, 217, 20);
 		pnlCadastro.add(lblNascimento);
 		lblNascimento.setForeground(Color.WHITE);
 		lblNascimento.setFont(new Font("Consolas", Font.BOLD, 20));
@@ -97,25 +97,25 @@ public class TelaDeCadastro extends JFrame {
 		txtNascimento.setFont(new Font("Consolas", Font.BOLD, 21));
 		txtNascimento.setBackground(new Color(28,28,28));
 		txtNascimento.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(102, 51, 255)));
-		txtNascimento.setBounds(309, 180, 125, 20);
+		txtNascimento.setBounds(309, 233, 125, 20);
 		pnlCadastro.add(txtNascimento);
 		txtNascimento.setFocusLostBehavior(JFormattedTextField.REVERT);
 		
-		labelSexo = new JLabel("Sexo");
-		labelSexo.setBounds(82, 234, 67, 20);
-		pnlCadastro.add(labelSexo);
-		labelSexo.setForeground(Color.WHITE);
-		labelSexo.setFont(new Font("Consolas", Font.BOLD, 20));
-		labelSexo.setBackground(Color.WHITE);
+		lblId = new JLabel("ID");
+		lblId.setBounds(82, 133, 67, 20);
+		pnlCadastro.add(lblId);
+		lblId.setForeground(Color.WHITE);
+		lblId.setFont(new Font("Consolas", Font.BOLD, 20));
+		lblId.setBackground(Color.WHITE);
 		
-		txtSexo = new JFormattedTextField();
-		txtSexo.setForeground(new Color(255, 255, 255));
-		txtSexo.setFont(new Font("Consolas", Font.BOLD, 21));
-		txtSexo.setBackground(new Color(28,28,28));
-		txtSexo.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(102, 51, 255)));
-		txtSexo.setBounds(258, 234, 176, 20);
-		pnlCadastro.add(txtSexo);
-		txtSexo.setFocusLostBehavior(JFormattedTextField.REVERT);
+		txtId = new JFormattedTextField();
+		txtId.setForeground(new Color(255, 255, 255));
+		txtId.setFont(new Font("Consolas", Font.BOLD, 21));
+		txtId.setBackground(new Color(28,28,28));
+		txtId.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(102, 51, 255)));
+		txtId.setBounds(142, 133, 292, 20);
+		pnlCadastro.add(txtId);
+		txtId.setFocusLostBehavior(JFormattedTextField.REVERT);
 		
 		txtNacionalidade = new JFormattedTextField();
 		txtNacionalidade.setForeground(new Color(255, 255, 255));
@@ -143,7 +143,7 @@ public class TelaDeCadastro extends JFrame {
 		
 		lblIconecadastro_1 = new JLabel("");
 		lblIconecadastro_1.setIcon(new ImageIcon("F:\\ws-javaswing\\cadastro-alunos-javawindowbuilder-jdbc\\icons\\icons8_id_card_96px.png"));
-		lblIconecadastro_1.setBounds(204, 11, 114, 83);
+		lblIconecadastro_1.setBounds(216, 11, 114, 83);
 		pnlCadastro.add(lblIconecadastro_1);
 		
 		lblCadastrar = new JLabel("Tela de Cadastro");

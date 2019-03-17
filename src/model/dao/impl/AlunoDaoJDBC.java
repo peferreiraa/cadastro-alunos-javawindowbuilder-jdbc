@@ -28,10 +28,11 @@ public class AlunoDaoJDBC implements AlunoDao {
 		try {
 			st = conn.prepareStatement(
 					"insert into alunos "
-					+ "(nome, nascimento, nacionalidade) values (?, ?, ?)");
-			st.setString(1, obj.getNome());
-			st.setDate(2, new java.sql.Date(obj.getDataDeNascimento().getTime()));
-			st.setString(3, obj.getNacionalidade());
+					+ "(id, nome, nascimento, nacionalidade) values (?, ?, ?, ?)");
+			st.setInt(1, obj.getId());
+			st.setString(2, obj.getNome());
+			st.setDate(3, new java.sql.Date(obj.getDataDeNascimento().getTime()));
+			st.setString(4, obj.getNacionalidade());
 			
 			int rowsAffected = st.executeUpdate();
 			if(rowsAffected > 0) {
@@ -51,7 +52,23 @@ public class AlunoDaoJDBC implements AlunoDao {
 
 	@Override
 	public void update(Aluno obj) {
-		// TODO Auto-generated method stub
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement(
+					"update alunos "
+					+ "set nome = ?, nascimento = ?, nacionalidade = ? where id = ?");
+			st.setString(1, obj.getNome());
+			st.setDate(2, new java.sql.Date(obj.getDataDeNascimento().getTime()));
+			st.setString(3, obj.getNacionalidade());
+			st.setInt(4, obj.getId());
+			st.executeUpdate();
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+		}
 		
 	}
 
@@ -72,6 +89,7 @@ public class AlunoDaoJDBC implements AlunoDao {
 			rs = st.executeQuery();
 			if(rs.next()) {
 				Aluno obj = new Aluno();
+				obj.setId(rs.getInt("id"));
 				obj.setNome(rs.getString("nome"));
 				obj.setDataDeNascimento(rs.getDate("nascimento"));
 				obj.setNacionalidade(rs.getString("nacionalidade"));
