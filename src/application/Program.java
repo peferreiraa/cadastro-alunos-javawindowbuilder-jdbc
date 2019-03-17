@@ -15,11 +15,15 @@ public class Program {
 
 	public static void main(String[] args) {
 		
+		Scanner sc = new Scanner(System.in);
 		AlunoDao alunoDao = DaoFactory.createAlunoDao();
-		Aluno aluno = alunoDao.findById(1);
-		aluno.setNome("Jose Francisco");
-		alunoDao.update(aluno);
+		Aluno aluno;
 		
+		System.out.println("Enter id for delete: ");
+		int id = sc.nextInt();
+		alunoDao.deleteById(1);
+		
+		sc.close();
 		DB.closeConnection();
 	}
 
