@@ -131,6 +131,7 @@ public class AlunoDaoJDBC implements AlunoDao {
 			List<Aluno> list = new ArrayList<>();
 			while(rs.next()) {
 				Aluno obj = new Aluno();
+				obj.setId(rs.getInt("id"));
 				obj.setNome(rs.getString("nome"));
 				obj.setDataDeNascimento(rs.getDate("nascimento"));
 				obj.setNacionalidade(rs.getString("nacionalidade"));

@@ -9,12 +9,21 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import model.controller.AlunoController;
+import model.entities.Aluno;
+
 import java.awt.Dimension;
 import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.JTabbedPane;
 import java.awt.ComponentOrientation;
 import javax.swing.JScrollPane;
+import java.awt.SystemColor;
+import java.util.ArrayList;
+import java.util.List;
+import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class TelaDeAlunosCadastrados extends JFrame {
 
@@ -41,6 +50,12 @@ public class TelaDeAlunosCadastrados extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaDeAlunosCadastrados() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				readJTable();
+			}
+		});
 		setResizable(false);
 		setMinimumSize(new Dimension(1029, 600));
 		setMaximumSize(new Dimension(1029, 600));
@@ -53,15 +68,17 @@ public class TelaDeAlunosCadastrados extends JFrame {
 		contentPaneAlunosCadastrados.setLayout(null);
 		
 		JScrollPane scrollPaneAlunosCadastrados = new JScrollPane();
+		scrollPaneAlunosCadastrados.setFont(new Font("Consolas", Font.BOLD, 11));
+		scrollPaneAlunosCadastrados.setBackground(Color.WHITE);
 		scrollPaneAlunosCadastrados.setBounds(0, 339, 1023, 232);
 		contentPaneAlunosCadastrados.add(scrollPaneAlunosCadastrados);
 		
 		tblAlunosCadastrados = new JTable();
+		tblAlunosCadastrados.setSelectionBackground(Color.WHITE);
+		tblAlunosCadastrados.setFont(new Font("Tahoma", Font.BOLD, 11));
+		tblAlunosCadastrados.setBackground(Color.LIGHT_GRAY);
 		tblAlunosCadastrados.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
 			},
 			new String[] {
 				"Id", "Nome", "Nascimento", "Nacionalidade"
@@ -76,5 +93,24 @@ public class TelaDeAlunosCadastrados extends JFrame {
 		});
 		tblAlunosCadastrados.getColumnModel().getColumn(3).setPreferredWidth(92);
 		scrollPaneAlunosCadastrados.setViewportView(tblAlunosCadastrados);
+		readJTable();
+		
 	}
+	
+	public void readJTable() {
+			DefaultTableModel model = (DefaultTableModel) tblAlunosCadastrados.getModel();
+			
+			model.setRowCount(0);
+			AlunoController controller = new AlunoController();
+			
+			for(Aluno p: controller.findAll()) {
+				model.addRow(new Object[] {
+						p.getId(),
+						p.getNome(),
+						p.getDataDeNascimento(),
+						p.getNacionalidade()
+				});
+			}
+			
+		}
 }
