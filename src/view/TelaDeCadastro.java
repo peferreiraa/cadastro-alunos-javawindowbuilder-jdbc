@@ -1,4 +1,4 @@
-package gui;
+package view;
 
 
 import java.awt.EventQueue;
@@ -12,10 +12,17 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 import javax.swing.border.MatteBorder;
+
+import model.controller.AlunoController;
+import model.entities.Aluno;
+
 import javax.swing.JButton;
 import java.awt.Insets;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Date;
 
 public class TelaDeCadastro extends JFrame {
 
@@ -25,14 +32,14 @@ public class TelaDeCadastro extends JFrame {
 	private JTextField textNome;
 	private JLabel lblNascimento;
 	private JLabel lblId;
-	private JFormattedTextField txtId;
 	private JLabel labelNacionalidade;
-	private JFormattedTextField txtNacionalidade;
 	private JPanel pnlCadastro;
 	private JButton btnCadastrar;
 	private JLabel lblCadastrar;
 	private JLabel lblIconecadastro;
 	private JLabel lblIconecadastro_1;
+	private JTextField textId;
+	private JTextField textNacionalidade;
 
 	/**
 	 * Launch the application.
@@ -112,24 +119,6 @@ public class TelaDeCadastro extends JFrame {
 		lblId.setFont(new Font("Consolas", Font.BOLD, 20));
 		lblId.setBackground(Color.WHITE);
 		
-		txtId = new JFormattedTextField();
-		txtId.setForeground(new Color(255, 255, 255));
-		txtId.setFont(new Font("Consolas", Font.BOLD, 21));
-		txtId.setBackground(new Color(28,28,28));
-		txtId.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(102, 51, 255)));
-		txtId.setBounds(142, 133, 292, 20);
-		pnlCadastro.add(txtId);
-		txtId.setFocusLostBehavior(JFormattedTextField.REVERT);
-		
-		txtNacionalidade = new JFormattedTextField();
-		txtNacionalidade.setForeground(new Color(255, 255, 255));
-		txtNacionalidade.setFont(new Font("Consolas", Font.BOLD, 21));
-		txtNacionalidade.setBackground(new Color(28,28,28));
-		txtNacionalidade.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(102, 51, 255)));
-		txtNacionalidade.setBounds(216, 288, 220, 20);
-		pnlCadastro.add(txtNacionalidade);
-		txtNacionalidade.setFocusLostBehavior(JFormattedTextField.REVERT);
-		
 		labelNacionalidade = new JLabel("Nacionaidade");
 		labelNacionalidade.setBounds(82, 288, 163, 20);
 		pnlCadastro.add(labelNacionalidade);
@@ -138,6 +127,18 @@ public class TelaDeCadastro extends JFrame {
 		labelNacionalidade.setBackground(Color.WHITE);
 		
 		btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Aluno obj = new Aluno();
+				AlunoController controller = new AlunoController();
+				obj.setId(Integer.parseInt(textId.getText()));
+				obj.setNome(textNome.getText());
+				obj.setDataDeNascimento(new Date());
+				obj.setNacionalidade(textNacionalidade.getText());
+				controller.insertStudent(obj);		
+			}
+		});
 		btnCadastrar.setBorder(null);
 		btnCadastrar.setBackground(new Color(102, 51, 255));
 		btnCadastrar.setMargin(new Insets(0, 14, 0, 14));
@@ -149,6 +150,24 @@ public class TelaDeCadastro extends JFrame {
 		lblIconecadastro_1.setIcon(new ImageIcon("F:\\ws-javaswing\\cadastro-alunos-javawindowbuilder-jdbc\\icons\\icons8_id_card_96px.png"));
 		lblIconecadastro_1.setBounds(216, 11, 114, 83);
 		pnlCadastro.add(lblIconecadastro_1);
+		
+		textId = new JTextField();
+		textId.setForeground(Color.WHITE);
+		textId.setFont(new Font("Consolas", Font.BOLD, 21));
+		textId.setColumns(10);
+		textId.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(102, 51, 255)));
+		textId.setBackground(new Color(28, 28, 28));
+		textId.setBounds(142, 133, 292, 20);
+		pnlCadastro.add(textId);
+		
+		textNacionalidade = new JTextField();
+		textNacionalidade.setForeground(Color.WHITE);
+		textNacionalidade.setFont(new Font("Consolas", Font.BOLD, 21));
+		textNacionalidade.setColumns(10);
+		textNacionalidade.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(102, 51, 255)));
+		textNacionalidade.setBackground(new Color(28, 28, 28));
+		textNacionalidade.setBounds(225, 288, 209, 20);
+		pnlCadastro.add(textNacionalidade);
 		
 		lblCadastrar = new JLabel("Tela de Cadastro");
 		lblCadastrar.setForeground(new Color(255, 255, 255));
