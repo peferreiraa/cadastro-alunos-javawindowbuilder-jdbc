@@ -18,6 +18,8 @@ import javax.swing.ImageIcon;
 import java.awt.Insets;
 import javax.swing.JPasswordField;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaPrincipal extends JFrame {
 
@@ -90,6 +92,13 @@ public class TelaPrincipal extends JFrame {
 		jplTelaPrincipal.add(lblSenha);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaDeMenu telaMenu = new TelaDeMenu();
+				telaMenu.setVisible(true);
+			}
+		});
 		btnLogin.setBorder(null);
 		btnLogin.setBackground(new Color(0, 255, 255));
 		btnLogin.setMargin(new Insets(0, 14, 0, 14));

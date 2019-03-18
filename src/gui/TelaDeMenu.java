@@ -14,6 +14,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.MatteBorder;
 import javax.swing.JTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaDeMenu extends JFrame {
 
@@ -39,6 +41,7 @@ public class TelaDeMenu extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaDeMenu() {
+		setResizable(false);
 		setMinimumSize(new Dimension(1029, 600));
 		setMaximumSize(new Dimension(1029, 600));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,6 +65,13 @@ public class TelaDeMenu extends JFrame {
 		lblMenuIconeCadastrar.setIcon(new ImageIcon("F:\\ws-javaswing\\cadastro-alunos-javawindowbuilder-jdbc\\icons\\icons8_student_registration_filled_100px_4.png"));
 		
 		JButton btnMenuCadastrarAluno = new JButton("Cadastrar Aluno");
+		btnMenuCadastrarAluno.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaDeCadastro telaCadastro = new TelaDeCadastro();
+				telaCadastro.setVisible(true);
+			}
+		});
 		btnMenuCadastrarAluno.setBackground(new Color(0, 191, 255));
 		btnMenuCadastrarAluno.setBorder(null);
 		btnMenuCadastrarAluno.setBounds(42, 238, 227, 44);
@@ -80,22 +90,30 @@ public class TelaDeMenu extends JFrame {
 		lblMenuConsultaDelete.setBounds(102, 81, 115, 117);
 		pnlMenuConsultaDelete.add(lblMenuConsultaDelete);
 		
-		JButton btnConsultaDelete = new JButton("Consultar - Deletar");
+		JButton btnConsultaDelete = new JButton("Consultar cadastros");
+		btnConsultaDelete.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaDeAlunosCadastrados alunosCadastros = new TelaDeAlunosCadastrados();
+				alunosCadastros.setVisible(true);
+			}
+		});
 		btnConsultaDelete.setBackground(new Color(0, 191, 255));
 		btnConsultaDelete.setBorder(null);
-		btnConsultaDelete.setFont(new Font("Consolas", Font.BOLD, 18));
+		btnConsultaDelete.setFont(new Font("Consolas", Font.BOLD, 19));
 		btnConsultaDelete.setBounds(38, 238, 230, 44);
 		pnlMenuConsultaDelete.add(btnConsultaDelete);
 		
 		JLabel lblMenu = new JLabel("Tela de Menu");
+		lblMenu.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 191, 255)));
 		lblMenu.setForeground(new Color(245, 255, 250));
 		lblMenu.setFont(new Font("Consolas", Font.BOLD, 32));
-		lblMenu.setBounds(56, 230, 221, 58);
+		lblMenu.setBounds(47, 211, 221, 47);
 		contentPaneMenu.add(lblMenu);
 		
 		JLabel lblIconemenu = new JLabel("");
 		lblIconemenu.setIcon(new ImageIcon("F:\\ws-javaswing\\cadastro-alunos-javawindowbuilder-jdbc\\icons\\icons8_checklist_100px.png"));
-		lblIconemenu.setBounds(287, 218, 100, 80);
+		lblIconemenu.setBounds(278, 189, 100, 80);
 		contentPaneMenu.add(lblIconemenu);
 	}
 }
