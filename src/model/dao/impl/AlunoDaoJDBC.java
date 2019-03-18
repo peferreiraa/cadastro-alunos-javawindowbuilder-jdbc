@@ -91,7 +91,7 @@ public class AlunoDaoJDBC implements AlunoDao {
 	}
 
 	@Override
-	public Aluno findById(Integer id) {
+	public List<Aluno> findById(Integer id) {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
@@ -99,15 +99,17 @@ public class AlunoDaoJDBC implements AlunoDao {
 					+ " where id = ?");
 			st.setInt(1, id);
 			rs = st.executeQuery();
+			
+			List<Aluno> list = new ArrayList<>();
 			if(rs.next()) {
 				Aluno obj = new Aluno();
 				obj.setId(rs.getInt("id"));
 				obj.setNome(rs.getString("nome"));
 				obj.setDataDeNascimento(rs.getDate("nascimento"));
 				obj.setNacionalidade(rs.getString("nacionalidade"));
-				return obj;
+				list.add(obj);
 			}
-			return null;
+			return list;
 		}
 		catch(SQLException e) {
 			throw new DbException(e.getMessage());
@@ -130,6 +132,36 @@ public class AlunoDaoJDBC implements AlunoDao {
 			
 			List<Aluno> list = new ArrayList<>();
 			while(rs.next()) {
+				Aluno obj = new Aluno();
+				obj.setId(rs.getInt("id"));
+				obj.setNome(rs.getString("nome"));
+				obj.setDataDeNascimento(rs.getDate("nascimento"));
+				obj.setNacionalidade(rs.getString("nacionalidade"));
+				list.add(obj);
+			}
+			return list;
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
+	}
+
+	@Override
+	public List<Aluno> findByName(String name) {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = conn.prepareStatement("select * from alunos "
+					+ " where nome like ?");
+			st.setString(1, "%"+name+"%");
+			rs = st.executeQuery();
+			
+			List<Aluno> list = new ArrayList<>();
+			if(rs.next()) {
 				Aluno obj = new Aluno();
 				obj.setId(rs.getInt("id"));
 				obj.setNome(rs.getString("nome"));

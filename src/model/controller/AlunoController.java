@@ -26,4 +26,12 @@ public class AlunoController {
 		dao.deleteById(id);
 	}
 	
+	public List<Aluno> findById(Integer id) {
+		return dao.findById(id);
+		
+	}
+	
+	public List<Aluno> finByName(String name){
+		return dao.findByName(name);
+	}
 }
