@@ -22,7 +22,7 @@ public class AlunoController {
 		dao.update(obj);
 	}
 	
-	public void deleteStudent(Integer id) {
+	public void deleteById(Integer id) {
 		dao.deleteById(id);
 	}
 	

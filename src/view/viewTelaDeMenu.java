@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class TelaDeMenu extends JFrame {
+public class viewTelaDeMenu extends JFrame {
 
 	private JPanel contentPaneMenu;
 
@@ -28,7 +28,7 @@ public class TelaDeMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaDeMenu frame = new TelaDeMenu();
+					viewTelaDeMenu frame = new viewTelaDeMenu();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class TelaDeMenu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaDeMenu() {
+	public viewTelaDeMenu() {
 		setResizable(false);
 		setMinimumSize(new Dimension(1029, 600));
 		setMaximumSize(new Dimension(1029, 600));
@@ -60,7 +60,7 @@ public class TelaDeMenu extends JFrame {
 		pnlMenu.setLayout(null);
 		
 		JLabel lblMenuIconeCadastrar = new JLabel("");
-		lblMenuIconeCadastrar.setBounds(103, 82, 115, 117);
+		lblMenuIconeCadastrar.setBounds(97, 87, 115, 117);
 		pnlMenu.add(lblMenuIconeCadastrar);
 		lblMenuIconeCadastrar.setIcon(new ImageIcon("F:\\ws-javaswing\\cadastro-alunos-javawindowbuilder-jdbc\\icons\\icons8_student_registration_filled_100px_4.png"));
 		
@@ -68,13 +68,13 @@ public class TelaDeMenu extends JFrame {
 		btnMenuCadastrarAluno.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeCadastro telaCadastro = new TelaDeCadastro();
+				viewTelaDeCadastro telaCadastro = new viewTelaDeCadastro();
 				telaCadastro.setVisible(true);
 			}
 		});
 		btnMenuCadastrarAluno.setBackground(new Color(0, 191, 255));
 		btnMenuCadastrarAluno.setBorder(null);
-		btnMenuCadastrarAluno.setBounds(42, 238, 227, 44);
+		btnMenuCadastrarAluno.setBounds(48, 239, 227, 44);
 		pnlMenu.add(btnMenuCadastrarAluno);
 		btnMenuCadastrarAluno.setFont(new Font("Consolas", Font.BOLD, 18));
 		
@@ -94,7 +94,7 @@ public class TelaDeMenu extends JFrame {
 		btnConsultaDelete.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeAlunosCadastrados alunosCadastros = new TelaDeAlunosCadastrados();
+				viewTelaDeAlunosCadastrados alunosCadastros = new viewTelaDeAlunosCadastrados();
 				alunosCadastros.setVisible(true);
 			}
 		});

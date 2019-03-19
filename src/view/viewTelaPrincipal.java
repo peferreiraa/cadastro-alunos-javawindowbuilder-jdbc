@@ -21,7 +21,7 @@ import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class TelaPrincipal extends JFrame {
+public class viewTelaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -36,7 +36,7 @@ public class TelaPrincipal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaPrincipal frame = new TelaPrincipal();
+					viewTelaPrincipal frame = new viewTelaPrincipal();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +48,7 @@ public class TelaPrincipal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaPrincipal() {
+	public viewTelaPrincipal() {
 		setResizable(false);
 		setMinimumSize(new Dimension(1029, 600));
 		setMaximumSize(new Dimension(1029, 600));
@@ -95,7 +95,7 @@ public class TelaPrincipal extends JFrame {
 		btnLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeMenu telaMenu = new TelaDeMenu();
+				viewTelaDeMenu telaMenu = new viewTelaDeMenu();
 				telaMenu.setVisible(true);
 			}
 		});

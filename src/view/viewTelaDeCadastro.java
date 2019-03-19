@@ -24,7 +24,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Date;
 
-public class TelaDeCadastro extends JFrame {
+public class viewTelaDeCadastro extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -48,7 +48,7 @@ public class TelaDeCadastro extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaDeCadastro frame = new TelaDeCadastro();
+					viewTelaDeCadastro frame = new viewTelaDeCadastro();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,7 +60,7 @@ public class TelaDeCadastro extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaDeCadastro() {
+	public viewTelaDeCadastro() {
 		setResizable(false);
 		setMinimumSize(new Dimension(1029, 600));
 		setMaximumSize(new Dimension(1029, 600));
