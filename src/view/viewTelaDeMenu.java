@@ -30,6 +30,7 @@ public class viewTelaDeMenu extends JFrame {
 				try {
 					viewTelaDeMenu frame = new viewTelaDeMenu();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -41,10 +42,11 @@ public class viewTelaDeMenu extends JFrame {
 	 * Create the frame.
 	 */
 	public viewTelaDeMenu() {
+		setUndecorated(true);
 		setResizable(false);
 		setMinimumSize(new Dimension(1029, 600));
 		setMaximumSize(new Dimension(1029, 600));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 989, 537);
 		contentPaneMenu = new JPanel();
 		contentPaneMenu.setBackground(new Color(28,28,28));
@@ -115,5 +117,33 @@ public class viewTelaDeMenu extends JFrame {
 		lblIconemenu.setIcon(new ImageIcon("F:\\ws-javaswing\\cadastro-alunos-javawindowbuilder-jdbc\\icons\\icons8_checklist_100px.png"));
 		lblIconemenu.setBounds(278, 189, 100, 80);
 		contentPaneMenu.add(lblIconemenu);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0, 191, 255));
+		panel.setBounds(0, 0, 1029, 28);
+		contentPaneMenu.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblFechar = new JLabel("");
+		lblFechar.setBounds(989, 0, 30, 30);
+		panel.add(lblFechar);
+		lblFechar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+		});
+		lblFechar.setIcon(new ImageIcon("F:\\ws-javaswing\\cadastro-alunos-javawindowbuilder-jdbc\\icons\\icons8_delete_sign_30px_1.png"));
+		
+		JLabel lblMinimizar = new JLabel("");
+		lblMinimizar.setBounds(949, 0, 30, 30);
+		panel.add(lblMinimizar);
+		lblMinimizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setExtendedState(ICONIFIED);
+			}
+		});
+		lblMinimizar.setIcon(new ImageIcon("F:\\ws-javaswing\\cadastro-alunos-javawindowbuilder-jdbc\\icons\\icons8_minimize_window_30px_1.png"));
 	}
 }

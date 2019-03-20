@@ -40,6 +40,7 @@ public class viewTelaDeCadastro extends JFrame {
 	private JLabel lblIconecadastro_1;
 	private JTextField textId;
 	private JTextField textNacionalidade;
+	private JTextField textNascimento;
 
 	/**
 	 * Launch the application.
@@ -61,10 +62,12 @@ public class viewTelaDeCadastro extends JFrame {
 	 * Create the frame.
 	 */
 	public viewTelaDeCadastro() {
+		setLocationRelativeTo(null);
+		setUndecorated(true);
 		setResizable(false);
 		setMinimumSize(new Dimension(1029, 600));
 		setMaximumSize(new Dimension(1029, 600));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1029, 600);
 		contentPaneCadastro = new JPanel();
 		contentPaneCadastro.setBackground(new Color(28,28,28));
@@ -103,15 +106,6 @@ public class viewTelaDeCadastro extends JFrame {
 		lblNascimento.setFont(new Font("Consolas", Font.BOLD, 20));
 		lblNascimento.setBackground(Color.WHITE);
 		
-		JFormattedTextField txtNascimento = new JFormattedTextField();
-		txtNascimento.setForeground(new Color(255, 255, 255));
-		txtNascimento.setFont(new Font("Consolas", Font.BOLD, 21));
-		txtNascimento.setBackground(new Color(28,28,28));
-		txtNascimento.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(102, 51, 255)));
-		txtNascimento.setBounds(309, 233, 125, 20);
-		pnlCadastro.add(txtNascimento);
-		txtNascimento.setFocusLostBehavior(JFormattedTextField.REVERT);
-		
 		lblId = new JLabel("ID");
 		lblId.setBounds(82, 133, 67, 20);
 		pnlCadastro.add(lblId);
@@ -136,7 +130,9 @@ public class viewTelaDeCadastro extends JFrame {
 				obj.setNome(textNome.getText());
 				obj.setDataDeNascimento(new Date());
 				obj.setNacionalidade(textNacionalidade.getText());
-				controller.insertStudent(obj);		
+				controller.insertStudent(obj);
+				
+				cleanLines();
 			}
 		});
 		btnCadastrar.setBorder(null);
@@ -169,6 +165,15 @@ public class viewTelaDeCadastro extends JFrame {
 		textNacionalidade.setBounds(225, 288, 209, 20);
 		pnlCadastro.add(textNacionalidade);
 		
+		textNascimento = new JTextField();
+		textNascimento.setForeground(Color.WHITE);
+		textNascimento.setFont(new Font("Consolas", Font.BOLD, 21));
+		textNascimento.setColumns(10);
+		textNascimento.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(102, 51, 255)));
+		textNascimento.setBackground(new Color(28, 28, 28));
+		textNascimento.setBounds(295, 233, 138, 20);
+		pnlCadastro.add(textNascimento);
+		
 		lblCadastrar = new JLabel("Tela de Cadastro");
 		lblCadastrar.setForeground(new Color(255, 255, 255));
 		lblCadastrar.setFont(new Font("Consolas", Font.BOLD, 40));
@@ -179,5 +184,42 @@ public class viewTelaDeCadastro extends JFrame {
 		lblIconecadastro.setIcon(new ImageIcon("F:\\ws-javaswing\\cadastro-alunos-javawindowbuilder-jdbc\\icons\\icons8_crowd_96px.png"));
 		lblIconecadastro.setBounds(386, 201, 108, 123);
 		contentPaneCadastro.add(lblIconecadastro);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0, 191, 255));
+		panel.setBounds(0, 0, 1029, 28);
+		contentPaneCadastro.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblFechar = new JLabel("");
+		lblFechar.setBounds(989, 0, 30, 30);
+		panel.add(lblFechar);
+		lblFechar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
+		lblFechar.setIcon(new ImageIcon("F:\\ws-javaswing\\cadastro-alunos-javawindowbuilder-jdbc\\icons\\icons8_delete_sign_30px_1.png"));
+		
+		JLabel lblMinimizar = new JLabel("");
+		lblMinimizar.setBounds(949, 0, 30, 30);
+		panel.add(lblMinimizar);
+		lblMinimizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setExtendedState(ICONIFIED);
+			}
+		});
+		lblMinimizar.setIcon(new ImageIcon("F:\\ws-javaswing\\cadastro-alunos-javawindowbuilder-jdbc\\icons\\icons8_minimize_window_30px_1.png"));
+		
+	}
+	
+	public void cleanLines() {
+		textId.setText("");
+		textNome.setText("");
+		textNascimento.setText("");
+		textNacionalidade.setText("");
+		
 	}
 }

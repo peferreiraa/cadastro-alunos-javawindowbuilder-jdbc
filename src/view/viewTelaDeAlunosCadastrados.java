@@ -63,6 +63,7 @@ public class viewTelaDeAlunosCadastrados extends JFrame {
 				try {
 					viewTelaDeAlunosCadastrados frame = new viewTelaDeAlunosCadastrados();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -74,6 +75,7 @@ public class viewTelaDeAlunosCadastrados extends JFrame {
 	 * Create the frame.
 	 */
 	public viewTelaDeAlunosCadastrados() {
+		setUndecorated(true);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
@@ -83,7 +85,7 @@ public class viewTelaDeAlunosCadastrados extends JFrame {
 		setResizable(false);
 		setMinimumSize(new Dimension(1029, 600));
 		setMaximumSize(new Dimension(1029, 600));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPaneAlunosCadastrados = new JPanel();
 		contentPaneAlunosCadastrados.setBackground(new Color(28, 28, 28));
@@ -296,6 +298,33 @@ public class viewTelaDeAlunosCadastrados extends JFrame {
 		contentPaneAlunosCadastrados.add(btnDeletar);
 		readJTable();
 		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0, 191, 255));
+		panel.setBounds(0, 0, 1029, 28);
+		contentPaneAlunosCadastrados.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblFechar = new JLabel("");
+		lblFechar.setBounds(989, 0, 30, 30);
+		panel.add(lblFechar);
+		lblFechar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
+		lblFechar.setIcon(new ImageIcon("F:\\ws-javaswing\\cadastro-alunos-javawindowbuilder-jdbc\\icons\\icons8_delete_sign_30px_1.png"));
+		
+		JLabel lblMinimizar = new JLabel("");
+		lblMinimizar.setBounds(949, 0, 30, 30);
+		panel.add(lblMinimizar);
+		lblMinimizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setExtendedState(ICONIFIED);
+			}
+		});
+		lblMinimizar.setIcon(new ImageIcon("F:\\ws-javaswing\\cadastro-alunos-javawindowbuilder-jdbc\\icons\\icons8_minimize_window_30px_1.png"));
 
 	}
 

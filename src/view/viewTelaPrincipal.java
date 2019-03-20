@@ -20,6 +20,8 @@ import javax.swing.JPasswordField;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class viewTelaPrincipal extends JFrame {
 
@@ -38,6 +40,7 @@ public class viewTelaPrincipal extends JFrame {
 				try {
 					viewTelaPrincipal frame = new viewTelaPrincipal();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,6 +52,8 @@ public class viewTelaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public viewTelaPrincipal() {
+		setLocationRelativeTo(null);
+		setUndecorated(true);
 		setResizable(false);
 		setMinimumSize(new Dimension(1029, 600));
 		setMaximumSize(new Dimension(1029, 600));
@@ -94,11 +99,22 @@ public class viewTelaPrincipal extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				viewTelaDeMenu telaMenu = new viewTelaDeMenu();
-				telaMenu.setVisible(true);
+			public void mouseEntered(MouseEvent e) {
+				btnLogin.setBackground(new Color(0,191,255));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnLogin.setBackground(new Color(0, 255, 255));
 			}
 		});
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				viewTelaDeMenu telaMenu = new viewTelaDeMenu();
+				telaMenu.setVisible(true);
+				dispose();
+			}
+		});
+		
 		btnLogin.setBorder(null);
 		btnLogin.setBackground(new Color(0, 255, 255));
 		btnLogin.setMargin(new Insets(0, 14, 0, 14));
@@ -125,5 +141,33 @@ public class viewTelaPrincipal extends JFrame {
 		lblIconTest.setIcon(new ImageIcon("F:\\ws-javaswing\\cadastro-alunos-javawindowbuilder-jdbc\\icons\\icons8_idea_50px.png"));
 		lblIconTest.setBounds(432, 230, 50, 72);
 		contentPanePrincipal.add(lblIconTest);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0, 191, 255));
+		panel.setBounds(0, 0, 1029, 28);
+		contentPanePrincipal.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblFechar = new JLabel("");
+		lblFechar.setBounds(989, 0, 30, 30);
+		panel.add(lblFechar);
+		lblFechar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+		});
+		lblFechar.setIcon(new ImageIcon("F:\\ws-javaswing\\cadastro-alunos-javawindowbuilder-jdbc\\icons\\icons8_delete_sign_30px_1.png"));
+		
+		JLabel lblMinimizar = new JLabel("");
+		lblMinimizar.setBounds(949, 0, 30, 30);
+		panel.add(lblMinimizar);
+		lblMinimizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setExtendedState(ICONIFIED);
+			}
+		});
+		lblMinimizar.setIcon(new ImageIcon("F:\\ws-javaswing\\cadastro-alunos-javawindowbuilder-jdbc\\icons\\icons8_minimize_window_30px_1.png"));
 	}
 }
